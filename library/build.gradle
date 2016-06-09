@@ -23,3 +23,15 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
 }
+apply plugin: 'com.novoda.bintray-release'
+publish {
+    //bintray.com用户名
+    userOrg = 'miaoyongjun'
+    //jcenter上的路径
+    groupId = 'com.miaoyongjun.autils'
+    //项目名称
+    artifactId = 'autils'
+    //版本号
+    publishVersion = '1.0.5'
+
+}
