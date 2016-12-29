@@ -13,6 +13,7 @@ compile 'com.miaoyongjun.autils:library:0.0.2'
 ##2016-12-29
 - add ToastUtil
 - add BigDecimalUtil
+- add MSwipeRefreshLayout
 
 
 #Thanks
