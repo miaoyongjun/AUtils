@@ -10,8 +10,9 @@ compile 'com.miaoyongjun.autils:library:0.0.2'
 ```
 
 #Log
-1.add ToastUtil
-2.add BigDecimalUtil
+##2016-12-29
+- add ToastUtil
+- add BigDecimalUtil
 
 
 #Thanks
