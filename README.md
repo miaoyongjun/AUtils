@@ -9,6 +9,11 @@ Some Utils For Android
 compile 'com.miaoyongjun.autils:library:0.0.2'
 ```
 
+#Log
+1.add ToastUtil
+2.add BigDecimalUtil
+
+
 #Thanks
 
 [AndroidCommon](https://github.com/h4de5ing/AndroidCommon)
