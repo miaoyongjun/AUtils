@@ -6,7 +6,7 @@ Some Utils For Android
 
 #Download
 ```
-compile 'com.miaoyongjun.autils:library:0.0.2'
+compile 'com.miaoyongjun.autils:library:1.0.0'
 ```
 
 #Log
