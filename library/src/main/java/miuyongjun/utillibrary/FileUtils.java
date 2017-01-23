@@ -16,9 +16,13 @@
 
 package miuyongjun.utillibrary;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.os.StatFs;
 import android.text.TextUtils;
 import android.text.format.Formatter;
 
@@ -55,12 +59,119 @@ public class FileUtils {
         }
     }
 
+    /**
+     * 删除指定文件夹下所有文件, 保留文件夹.
+     */
+    public static boolean delAllFile(String path) {
+        boolean flag = false;
+        File file = new File(path);
+        if (!file.exists()) {
+            return flag;
+        }
+        if (file.isFile()) {
+            file.delete();
+            return true;
+        }
+        File[] files = file.listFiles();
+        for (int i = 0; i < files.length; i++) {
+            File exeFile = files[i];
+            if (exeFile.isDirectory()) {
+                delAllFile(exeFile.getAbsolutePath());
+            } else {
+                exeFile.delete();
+            }
+        }
+        return flag;
+    }
+
     public static boolean deleteFile(String filename) {
         return new File(filename).delete();
     }
 
     public static boolean isFileExist(String filePath) {
         return new File(filePath).exists();
+    }
+
+    /**
+     * 得到SD卡根目录.
+     */
+    public static File getRootPath() {
+        File path = null;
+        if (sdCardIsAvailable()) {
+            path = Environment.getExternalStorageDirectory(); // 取得sdcard文件路径
+        } else {
+            path = Environment.getDataDirectory();
+        }
+        return path;
+    }
+
+    /**
+     * SD卡是否可用.
+     */
+    public static boolean sdCardIsAvailable() {
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            File sd = new File(Environment.getExternalStorageDirectory().getPath());
+            return sd.canWrite();
+        } else
+            return false;
+    }
+
+    /**
+     * 获取磁盘可用空间.
+     */
+    @SuppressWarnings("deprecation")
+    @SuppressLint("NewApi")
+    public static long getSDCardAvailaleSize() {
+        File path = getRootPath();
+        StatFs stat = new StatFs(path.getPath());
+        long blockSize, availableBlocks;
+        if (Build.VERSION.SDK_INT >= 18) {
+            blockSize = stat.getBlockSizeLong();
+            availableBlocks = stat.getAvailableBlocksLong();
+        } else {
+            blockSize = stat.getBlockSize();
+            availableBlocks = stat.getAvailableBlocks();
+        }
+        return availableBlocks * blockSize;
+    }
+
+    /**
+     * 获取某个目录可用大小.
+     */
+    @SuppressLint("NewApi")
+    @SuppressWarnings("deprecation")
+    public static long getDirSize(String path) {
+        StatFs stat = new StatFs(path);
+        long blockSize, availableBlocks;
+        if (Build.VERSION.SDK_INT >= 18) {
+            blockSize = stat.getBlockSizeLong();
+            availableBlocks = stat.getAvailableBlocksLong();
+        } else {
+            blockSize = stat.getBlockSize();
+            availableBlocks = stat.getAvailableBlocks();
+        }
+        return availableBlocks * blockSize;
+    }
+
+    /**
+     * 获取文件或者文件夹大小.
+     */
+    public static long getFileAllSize(String path) {
+        File file = new File(path);
+        if (file.exists()) {
+            if (file.isDirectory()) {
+                File[] childrens = file.listFiles();
+                long size = 0;
+                for (File f : childrens) {
+                    size += getFileAllSize(f.getPath());
+                }
+                return size;
+            } else {
+                return file.length();
+            }
+        } else {
+            return 0;
+        }
     }
 
     /**
@@ -107,6 +218,12 @@ public class FileUtils {
         in.transferTo(0, in.size(), out);
     }
 
+    /**
+     * 文件分享
+     * @param context
+     * @param title
+     * @param filePath
+     */
     public static void shareFile(Context context, String title, String filePath) {
         Intent intent = new Intent(Intent.ACTION_SEND);
         Uri uri = Uri.parse("file://" + filePath);

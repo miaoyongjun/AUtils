@@ -6,10 +6,16 @@ Some Utils For Android
 
 #Download
 ```
-compile 'com.miaoyongjun.autils:library:1.0.0'
+compile 'com.miaoyongjun.autils:library:1.0.1'
 ```
 
 #Log
+
+##2017-01-23
+- modify BitmapUtil
+- modify FileUtil
+- modify ImageUtil
+
 ##2016-12-29
 - add ToastUtil
 - add BigDecimalUtil

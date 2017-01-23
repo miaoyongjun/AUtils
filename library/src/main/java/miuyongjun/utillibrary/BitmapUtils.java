@@ -2,6 +2,7 @@
 
 package miuyongjun.utillibrary;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
@@ -16,6 +17,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.media.ThumbnailUtils;
 import android.os.Environment;
+import android.view.View;
 import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
@@ -145,6 +147,7 @@ public class BitmapUtils {
         }
         return result;
     }
+
     /**
      * Bitmap转Drawable
      */
@@ -166,7 +169,7 @@ public class BitmapUtils {
      * Bitmap对象转换TransitionDrawable对象.
      *
      * @param bitmap 要转化的Bitmap对象 imageView.setImageDrawable(td);
-     * td.startTransition(200);
+     *               td.startTransition(200);
      * @return Drawable 转化完成的Drawable对象
      */
     @SuppressWarnings("ResourceType")
@@ -177,8 +180,8 @@ public class BitmapUtils {
                 return null;
             }
             mBitmapDrawable = new TransitionDrawable(
-                    new Drawable[] { new ColorDrawable(android.R.color.transparent),
-                            new BitmapDrawable(bitmap) });
+                    new Drawable[]{new ColorDrawable(android.R.color.transparent),
+                            new BitmapDrawable(bitmap)});
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -190,7 +193,7 @@ public class BitmapUtils {
      * Drawable对象转换TransitionDrawable对象.
      *
      * @param drawable 要转化的Drawable对象 imageView.setImageDrawable(td);
-     * td.startTransition(200);
+     *                 td.startTransition(200);
      * @return Drawable 转化完成的Drawable对象
      */
     @SuppressWarnings("ResourceType")
@@ -201,7 +204,7 @@ public class BitmapUtils {
                 return null;
             }
             mBitmapDrawable = new TransitionDrawable(
-                    new Drawable[] { new ColorDrawable(android.R.color.transparent), drawable });
+                    new Drawable[]{new ColorDrawable(android.R.color.transparent), drawable});
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -226,5 +229,15 @@ public class BitmapUtils {
         return bitmap;
     }
 
+    /**
+     * 获取屏幕截屏
+     */
+    public static Bitmap getScreenShot(Activity activity) {
+        View view = activity.getWindow().getDecorView();
+        view.setDrawingCacheEnabled(true);
+        Bitmap bitmap = view.getDrawingCache();
+        view.destroyDrawingCache();
+        return bitmap;
+    }
 
 }
