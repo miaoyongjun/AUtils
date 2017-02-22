@@ -4,10 +4,24 @@ Some Utils For Android
 
 一些android工具类的汇总
 
-#Download
+# gradle
+
+Add it in your root build.gradle at the end of repositories:
 ```
-compile 'com.miaoyongjun.autils:library:1.0.1'
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
 ```
+Add the dependency:
+```
+dependencies {
+	        compile 'com.github.miaoyongjun:AUtils:1.0.1'
+	}
+```
+[![](https://jitpack.io/v/miaoyongjun/AUtils.svg)](https://jitpack.io/#miaoyongjun/AUtils)
 
 #Log
 
