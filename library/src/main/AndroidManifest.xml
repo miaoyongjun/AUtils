@@ -1,4 +1,4 @@
-<manifest package="miuyongjun.utillibrary"
+<manifest package="miaoyongjun.utillibrary"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
