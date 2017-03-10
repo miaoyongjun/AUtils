@@ -1,6 +1,6 @@
-# Autils
+# Autils [![](https://jitpack.io/v/miaoyongjun/AUtils.svg)](https://jitpack.io/#miaoyongjun/AUtils)
 
-Some Utils For Android this is test
+Some Utils For Android 
 
 一些android工具类的汇总
 
@@ -18,12 +18,18 @@ allprojects {
 Add the dependency:
 ```
 dependencies {
-	        compile 'com.github.miaoyongjun:AUtils:1.0.1'
+	        compile 'com.github.miaoyongjun:AUtils:1.0.2'
 	}
 ```
-[![](https://jitpack.io/v/miaoyongjun/AUtils.svg)](https://jitpack.io/#miaoyongjun/AUtils)
 
 #Log
+
+##2017-3-10
+- 增加material_design 颜色值xml文件 
+- 增加stateButton  用代码设置selector背景（按下去背景颜色更改，样式变化等等）的button. fork from [StateButton](https://github.com/niniloveyou/StateButton)
+- 增加CrashUtils fork from  [AndroidUtilCode](https://github.com/Blankj/AndroidUtilCode)
+- add TimeUtil
+
 
 ##2017-01-23
 - modify BitmapUtil
@@ -39,3 +45,5 @@ dependencies {
 #Thanks
 
 [AndroidCommon](https://github.com/h4de5ing/AndroidCommon)
+[AndroidUtilCode](https://github.com/Blankj/AndroidUtilCode)
+[StateButton](https://github.com/niniloveyou/StateButton)
