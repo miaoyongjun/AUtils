@@ -20,6 +20,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Environment;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -51,7 +52,7 @@ public class FileUtils {
      */
     public static File getRootPath() {
         File path = null;
-        if (FileUtil.sdCardIsAvailable()) {
+        if (sdCardIsAvailable()) {
             path = Environment.getExternalStorageDirectory(); // 取得sdcard文件路径
         } else {
             path = Environment.getDataDirectory();
