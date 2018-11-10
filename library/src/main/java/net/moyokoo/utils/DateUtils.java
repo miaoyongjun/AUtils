@@ -8,7 +8,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 import java.util.TimeZone;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DateUtils {
 
@@ -74,6 +77,17 @@ public class DateUtils {
         Date date = null;
         try {
             date = isoFormat.parse(timeZone);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+
+    public static Date getWeiboTimeZone(String timeZone){
+        Date date = null;
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy", Locale.US);
+        try {
+            date = sdf.parse(timeZone);
         } catch (ParseException e) {
             e.printStackTrace();
         }
